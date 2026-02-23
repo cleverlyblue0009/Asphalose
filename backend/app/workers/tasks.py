@@ -3,6 +3,7 @@ Celery background tasks.
 """
 from .celery_app import celery_app
 from ..core.database import SessionLocal
+from ..models.activity import Activity
 from ..services.activity_service import ActivityService, generate_fake_activity
 
 

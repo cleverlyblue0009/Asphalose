@@ -22,12 +22,10 @@ celery_app.conf.update(
     task_track_started=True,
     task_time_limit=300,  # 5 minutes
     worker_prefetch_multiplier=4,
-)
-
-# Beat schedule for periodic tasks
-celery_app.conf.beat_schedule = {
-    "generate-activities": {
-        "task": "app.workers.tasks.generate_activity_task",
-        "schedule": float(settings.ACTIVITY_GENERATION_INTERVAL),
+    beat_schedule={
+        "generate-activities": {
+            "task": "app.workers.tasks.generate_activity_task",
+            "schedule": float(settings.ACTIVITY_GENERATION_INTERVAL),
+        },
     },
-}
+)
