@@ -22,7 +22,7 @@ class FileScan(Base):
     quarantine_path = Column(Text, nullable=True)
     scanned_by = Column(String(100), nullable=True)
     scan_timestamp = Column(DateTime(timezone=True), server_default=func.now(), nullable=False, index=True)
-    metadata = Column(Text, nullable=True)  # JSON string for additional data
+    extra_data = Column(Text, nullable=True)  # JSON string for additional data
 
     def to_dict(self):
         """Convert model to dictionary."""
@@ -38,5 +38,5 @@ class FileScan(Base):
             "quarantine_path": self.quarantine_path,
             "scanned_by": self.scanned_by,
             "scan_timestamp": self.scan_timestamp.isoformat() if self.scan_timestamp else None,
-            "metadata": self.metadata,
+            "extra_data": self.extra_data,
         }

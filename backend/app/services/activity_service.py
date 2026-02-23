@@ -128,7 +128,7 @@ class ActivityService:
             is_suspicious=is_suspicious,
             confidence_score=confidence if is_suspicious else None,
             severity=severity if is_suspicious else None,
-            metadata=activity_data.get('metadata'),
+            extra_data=activity_data.get('extra_data'),
         )
 
         self.db.add(activity)

@@ -22,7 +22,7 @@ class ModelMetrics(Base):
     training_duration = Column(Float, nullable=True)  # seconds
     model_version = Column(String(50), nullable=True)
     trained_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False, index=True)
-    metadata = Column(Text, nullable=True)  # JSON string for additional data
+    extra_data = Column(Text, nullable=True)  # JSON string for additional data
 
     def to_dict(self):
         """Convert model to dictionary."""
@@ -38,5 +38,5 @@ class ModelMetrics(Base):
             "training_duration": self.training_duration,
             "model_version": self.model_version,
             "trained_at": self.trained_at.isoformat() if self.trained_at else None,
-            "metadata": self.metadata,
+            "extra_data": self.extra_data,
         }

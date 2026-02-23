@@ -23,7 +23,7 @@ class Alert(Base):
     acknowledged_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False, index=True)
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    metadata = Column(Text, nullable=True)  # JSON string for additional data
+    extra_data = Column(Text, nullable=True)  # JSON string for additional data
 
     def to_dict(self):
         """Convert model to dictionary."""
@@ -40,5 +40,5 @@ class Alert(Base):
             "acknowledged_at": self.acknowledged_at.isoformat() if self.acknowledged_at else None,
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
-            "metadata": self.metadata,
+            "extra_data": self.extra_data,
         }
